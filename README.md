@@ -50,7 +50,7 @@ Here are instructions to complete before our first workshop on June 2!
 
 ### Setting up your workspace
 1. Install the required libraries in R:
-`install.packages(c("shiny", "DT", "readr", "plotly", "dplyr", "tidyverse", "knitr", "rsconnect))`
+`install.packages(c("shiny", "DT", "readr", "plotly", "dplyr", "tidyverse", "knitr", "rsconnect", "rmarkdown"))`
 2. **Due this on or after May 30, 2023!**
 <br>
 Clone or download the `workshop` branch of this repo 

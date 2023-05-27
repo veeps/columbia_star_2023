@@ -1,0 +1,121 @@
+---
+title: "Homework 1: Cereal Data"
+output: html_document
+date: "2023-05-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Overview
+
+We'll be working with a cereal dataset from [Kaggle](https://www.kaggle.com/datasets/crawford/80-cereals). I have made some edits to it for the purposes of our workshops. The goal for this homework assignment is to get more comfortable with cleaning data, understanding data frame structure, and creating visuals for exploratory data analysis. We'll be building on the visuals you create in this homework assignment for next week's workshop session!
+
+```{r set up}
+library(tidyverse)
+library(janitor)
+```
+
+## Step 1: Reading the data
+
+1.  Load in the `cereal.csv` file from the `data` folder
+2.  Display the first 5 lines of the data
+
+```{r}
+# read in data
+
+
+# display the first 5 lines
+
+```
+
+## Step 2: Cleaning the data
+
+1. Clean up the column names by making them lower case (hint: use the `clean_names()` function from the [janitor library](https://www.rdocumentation.org/packages/janitor/versions/2.2.0))
+2. Find how many missing values are in each column (hint: use `colSums`)
+3. Which column has the most `NaN` values?
+4. Fill all empty manufacturer with "idk"
+5. Find the written value in the calories column. Replace it with its numeric value
+6. Convert the calories column to a numeric
+
+```{r}
+
+# clean column names
+
+
+# find how many missing values are in each column
+
+
+# which column has the most missing values?
+
+
+# fill all empty manufacturer values with "idk"
+
+
+# find the written value in the calories column
+
+
+# replace the written value with its numeric value
+
+
+# convert the calories column to a numeric
+
+
+```
+
+## Step 3: Exploratory analysis
+
+1. What is the average amount of protein in all the cereals?
+2. Sort the table and show the top ten cereals with the most protein levels
+3. On average, which manufacturer has the most amount of protein in their cereals?
+4. What is the max amount of vitamins in General Mills cereals?
+
+
+```{r}
+
+# what is the average amount of protein in all the cereals?
+
+
+# sort dataframe by protein level in descending order. Show the top 10 rows
+
+
+# on average, which manufacturer has the most amount of sugar in their cereals?
+
+
+# what is the max amount of vitamins in General Mills cereals?
+
+
+
+```
+
+## Step 4: Visualizations
+
+1. Create a histogram to show the range of sugar levels in the data
+```{r, echo= FALSE}
+
+# create a histogram to show the range of sugar levels in the data
+
+
+```
+2. Create a barchart the shows the top ten cereals with the most protein. Fill the color of the bars with "#0add8c"
+```{r, echo= FALSE}
+# create a barchart the shows the top ten cereals with the most protein
+
+
+```
+
+3. Create a scatterplot that explores the relationship between protein and sugar amounts in cereals
+```{r, echo= FALSE}
+
+# create a scatterplot that explores the relationship between protein and sugar amounts in cereals
+
+```
+
+4. Create a chart that shows something you're interested about in this dataset
+```{r, echo= FALSE}
+
+# create a chart that shows something you're interested about in this dataset
+
+
+```

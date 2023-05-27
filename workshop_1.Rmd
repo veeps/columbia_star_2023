@@ -1,0 +1,282 @@
+---
+title: "Intro to R"
+output: html_document
+date: '2023-06-02'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+# R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can run parts of the code like this:
+
+```{r chunk}
+
+print("hello")
+```
+
+## 1. Variables and Classes
+
+Variables are containers for storing data values. A variable is created the moment you first assign a value to it and it will be stored in this container until you assign a new value to it.
+
+```{r variable assignments}
+x <- 1
+number <- 27
+words <- "Happy Friday!"
+```
+
+Now let's **print** the result!
+
+```{r print}
+
+print(x)
+print(number)
+print(words)
+print(x + number)
+```
+
+## Task
+
+1.  Assign a value of your name to a new variables **name**
+2.  And **print** your name
+
+```{r task}
+
+
+
+```
+
+## 2. Data Types
+
+In programming, data type is an important concept.
+
+Variables can store data of different types, and different types can do different things.
+
+R has the following data types built-in by default, in these categories:
+
+-   **Numeric Types**: int, float
+
+-   **Text Type**: character, factor
+
+-   **Dates:** date, POSIXct
+
+-   **Boolean Type**: logical
+
+-   **Vector Types**: list
+
+-   **Data frame Types:** data.frame, tibble
+
+```{r check types}
+
+# check for data types
+class(x)
+class(words)
+
+# check by true/false
+is.numeric(x)
+is.numeric(words)
+
+
+# change the data type for x
+
+x <- as.character(x)
+print(x) # notice the quotation marks
+```
+
+## 3. Data Frames
+
+It's a way to view data in a spreadsheet format, like in Excel.
+
+```{r read in a dataframe}
+
+# read in data from a csv file
+df <- read_csv("data/starbucks_drinkMenu_expanded.csv")
+
+
+# check the class of the dataframe
+class(df)
+
+
+# get the column names
+colnames(df)
+```
+
+### In reality, each column is a vector. How do we select for each column?
+
+1.  Use the '\$' convention
+2.  Use square brackets
+
+```{r select for columns}
+
+# dollar sign convention
+df$category
+  
+# square brackets 
+df['category']
+```
+
+### Explore the different categories of beverages in the data
+
+```{r explore types of drinks}
+
+unique(df$category)
+```
+
+## Task: Check how many different drinks are in the data
+
+```{r see how many different drinks are in the data}
+
+```
+
+### We can also perform functions on the columns
+
+```{r data frame functions}
+
+
+# What's the most amount of calories in a drink?
+max(df$calories)
+
+
+# What's the least amount of calories in a drink?
+min(df$calories)
+
+```
+
+### Task: Find the most amount of sugar in a drink
+
+```{r sugar count}
+
+
+```
+
+### Let's say we want to find the "healthiest" options on the menu. First let's get an overview of all the variables
+
+```{r summary}
+
+summary(df)
+
+```
+
+### We see that Vitamin A, Vitamin C, Calcium, and Iron variables are character columns. Let's explore the ***vitamin_a*** column
+
+```{r convert class type}
+
+# check class
+class()
+
+# get a preview
+head()
+tail()
+
+# can you check for unique values?
+unique()
+
+
+# remove the percent signs
+df$vitamin_a <- str_replace()
+
+
+# now look at the unique values in the column
+unique(df$vitamin_a)
+
+
+# convert it to a numeric
+df$vitamin_a <- as.numeric()
+
+
+# look at the values now
+unique(df$vitamin_a) # notice the removal of the quotation marks
+```
+
+### Let's do this for Vitamin C, Calcium, and Iron columns too
+
+## First, an intro to pipes. View slides [here](https://docs.google.com/presentation/d/1quw8JVVBsEEMUrewK0Q4F-rbD1raPWfEYh0n5gNP_k0/edit?usp=sharing)
+
+```{r intro to pipes}
+
+# remove percent signs for these columns
+df2 <- df %>%
+  mutate(
+    
+  )
+```
+
+### Task: Can you convert Vitamin C, Calcium, and Iron columns into numerics?
+
+```{r convert to numerics}
+
+# convert vitamin c, calcium, and iron columns into numeric class
+
+df2 <- df2 %>%
+  mutate(
+
+    
+  )
+
+
+# now check the summary again
+summary(df2)
+```
+
+### Now we can create our healthy drinks table by selecting for drinks with these characteristics:
+
+-   Sugar below the mean
+-   Vitamin C, Calcium, and Iron great than or equal to the median
+
+```{r create a healthy table}
+
+healthy <- df2 %>%
+  filter(
+    
+  )
+
+```
+
+## Let's visualize the drinks with the most sugar
+
+```{r ggplot2 intro}
+ggplot(df2, aes(x= , y = , color = )) +
+  geom_point()
+```
+
+## Introduce group_by
+
+Let's create a table that summaries each category by our 'health' variables
+
+```{r group_by}
+
+nutrition <- df2 %>%
+  group_by() %>%
+  summarize(sugars = mean(sugars),
+          vitamin_a = mean(vitamin_a),
+          vitamin_c = mean(vitamin_c)
+          )
+```
+
+### Now let's make a bar chart of the drinks with the highest sugar content
+
+```{r create sugars chart}
+ggplot(nutrition, aes(x = , y = , fill = )) +
+  geom_bar() 
+# use "identity" to get the actual value of the column instead of the total number of rows
+```
+
+### Task: Can you create a bar chart of the drinks with the highest Vitamin C content?
+
+```{r create vitamin C bar chart}
+
+```
+
+## Add labels and clean up the X axis
+
+```{r customize plot}
+ggplot(nutrition, aes(x = category, y = vitamin_c, fill = category)) +
+  geom_bar(stat= "identity") +
+  ggtitle("Average Vitamin C Content by Drink Category") + 
+  scale_x_discrete(labels=function(x){gsub(" ", "\n", nutrition$category)})
+```

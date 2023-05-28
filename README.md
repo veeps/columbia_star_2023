@@ -35,7 +35,7 @@ How do we take the graphics from our last session and make them interactive?
 - Understand UI framework
 - Deploy to shinyapps.io
 - Intro to advanced reactive variables
-- [Homework 2](link coming soon)
+- [Homework 2](/hw_2)
 
 ### Slides
 For the best experience, I would view the slides online [here](https://docs.google.com/presentation/d/1quw8JVVBsEEMUrewK0Q4F-rbD1raPWfEYh0n5gNP_k0/edit?usp=sharing).

@@ -27,7 +27,8 @@ Getting familiar with the R environment, and starting to look at data through co
 - Overview of Shiny set up
 - [Homework 1](/hw_1/)
 
-### Workshop 2 - Intro to Shiny
+### Workshop 2 - June 9, 2023
+### Intro to Shiny
 How do we take the graphics from our last session and make them interactive?
 - Using widgets
 - Create interactive charts from hw assignment

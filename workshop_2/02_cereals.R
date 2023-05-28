@@ -47,11 +47,15 @@ ui <- fluidPage(
 
 server <- function(input, output, session) {
   
+  df_sub <- reactive({
+    df  |> arrange(desc(.data[[input$bar_var]])) |> head(10)
+  })
+  
   # Bar chart section -------------------------------------------------------
   
   # render barchart
   output$bar_plot <- renderPlot({
-    ggplot(df |> arrange(desc(.data[[input$bar_var]])) |> head(10),
+    ggplot(df_sub(),
            aes(y=.data[[input$bar_var]], 
                x=Name)) + 
       geom_bar(stat="identity", fill = "#0add8c") +
